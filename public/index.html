@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bunty’s Helper</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+}
+
+.chat {
+  width: 380px;
+  height: 520px;
+  background: #fff;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  background: #000;
+  color: #fff;
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.box {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.msg {
+  max-width: 75%;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+.bot {
+  background: #f1f1f1;
+  color: #000;
+}
+
+.user {
+  background: #000;
+  color: #fff;
+  margin-left: auto;
+}
+
+.input {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-left: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat">
+  <div class="header">BUNTY’S HELPER</div>
+
+  <div class="box" id="box">
+    <div class="msg bot">
+      Hello. I’m Bunty’s Helper.<br>
+      How can I assist you today?
+    </div>
+  </div>
+
+  <div class="input">
+    <input id="input" placeholder="Type a message…" />
+    <button onclick="send()">Send</button>
+  </div>
+</div>
+
+<script>
+const box = document.getElementById("box");
+const input = document.getElementById("input");
+
+function add(text, who) {
+  const d = document.createElement("div");
+  d.className = "msg " + who;
+  d.textContent = text;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function send() {
+  const t = input.value.trim();
+  if (!t) return;
+  add(t, "user");
+  input.value = "";
+
+  setTimeout(() => {
+    add("I’m a demo version hosted on GitHub Pages.", "bot");
+  }, 600);
+}
+
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") send();
+});
+</script>
+
+</body>
+</html>
